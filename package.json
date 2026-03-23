@@ -1,0 +1,32 @@
+{
+  "name": "namaste-reactjs",
+  "version": "1.0.0",
+  "description": "this is namaste react ",
+  "keywords": [],
+  "homepage": "https://github.com/AakashMaddela-A/Namaste-React#readme",
+  "bugs": {
+    "url": "https://github.com/AakashMaddela-A/Namaste-React/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AakashMaddela-A/Namaste-React.git"
+  },
+  "license": "ISC",
+  "author": "Aakash",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}

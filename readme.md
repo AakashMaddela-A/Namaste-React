@@ -25,3 +25,25 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(parent);
 
 --------------------------------------------------
+
+# Namaste React 🚀
+
+--
+# Parcel
+-Dev Build
+-Local Server
+-HMR = Hot Module Replacement
+-File Watching Algorithm -written in C++
+-Caching -Faster Builds
+-Image Optimization
+-Minification
+-Bundling
+-Compress
+-consistent hashing
+-code splitting
+-differential bundling - support older browsers
+-diagnostic
+-error handling
+-https
+-tree shaking - remove unused code
+-different dev and prod bundles
