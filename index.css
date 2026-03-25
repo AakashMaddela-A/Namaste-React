@@ -31,6 +31,15 @@ body {
     margin: 10px;
 }
 
+.login{
+    padding: 0 20px;
+    border-radius: 60px;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    margin-right: 10px;
+}
+
 .res-container{
     justify-content: center;
     display: flex;
@@ -42,11 +51,15 @@ body {
     width: 230px;
     padding: 5px;
     border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .res-card img:hover{
     cursor: pointer;
-    border: 2px solid red;
+    border: 2px solid yellow;
+    transition: all 0.3s ease;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .filter{
@@ -57,6 +70,22 @@ body {
 .res-logo{
     width: 230px;
     height: 180px;
+    border-radius: 20px;
+}
+
+.shimmer-container{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.shimmer-card{
+    width:230px;
+    height:400px;
+    background-color: #fff1c4;
+    padding-top: 10px;
+    padding: 5px;
     border-radius: 20px;
 }
 
