@@ -47,3 +47,304 @@ root.render(parent);
 -https
 -tree shaking - remove unused code
 -different dev and prod bundles
+
+--------------------------------------------------------
+
+# Namste food ordering
+
+/**
+ * 
+ * Header
+ *  -logo
+ *  -nav items
+ * body
+ * -search
+ * -restaurntcontainer
+ *    -restaurantcard
+ *        -img
+ *        -name of res, star rating, cuisines, delivery time
+ * footer
+ * -copyright
+ * -links
+ * -address
+ * -contact
+ * 
+ * * */
+
+------------------------------------------------------------
+
+
+// jsx - html like syntax (transpiled before it reaches the js engine)
+// parcel will do this all inside the babel
+
+const jsxHeading = (<h1>Namaste React using jsx</h1>);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(jsxHeading);
+
+------------------------------------------------------------------
+
+// React Component
+// class base components
+// functional components
+
+// functional components
+const HeadingComponent = ()=>{
+    return <h1>Namaste React Functional Component</h1>
+}
+
+------------------------------------------------------------------
+
+// functional components
+const HeadingComponent = ()=>{
+    <div id="container">
+        <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<HeadingComponent />);
+
+------------------------------------------------------------------
+
+            Component Composition
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+
+const Title = () => (<h1 id="heading">Namaste React using jsx</h1>);
+
+const HeadingComponent = ()=>(
+    <div id="container">
+        <Title />
+        <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<HeadingComponent />);
+
+-------------------------------------------------------------
+
+            React element inside component
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+
+const Title = (<h1 id="heading">Namaste React using jsx</h1>);
+
+const HeadingComponent = ()=>(
+    <div id="container">
+        {Title}
+        <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<HeadingComponent />);
+
+-----------------------------------------------------------------
+
+            component binding in react element
+
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+
+const elem = <span>React Element</span>
+
+const HeadingComponent = ()=>(
+    <div id="container">
+        <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+);
+
+const Title = (
+    <h1 id="heading">
+    {elem}
+    Namaste React using jsx
+    <HeadingComponent />
+    </h1>
+    );
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(Title);
+
+---------------------------------------------------------------
+
+            res card hard coded -> 
+
+const RestaurantCard = ()=>{
+    return(
+        <div className="res-card" style={{backgroundColor: "#c8c4c4"}}>
+            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ijy2jxi7lfwsebdtazpi" />
+            <h3>Meghana Foods</h3>
+            <h4>Haleem, Biryani, Kebabs</h4>
+            <h4>4.4 stars</h4>
+            <h4>38 minutes</h4>
+        </div>
+    )
+}
+
+
+// body component
+const Body = ()=>{
+    return(
+        <div className="body">
+            <div className="search">
+                Search
+            </div>
+
+            <div className="res-container">
+                <RestaurantCard />
+                <RestaurantCard />
+            </div>
+        </div>
+    )
+}
+
+--------------------------------------------------------------
+
+
+const RestaurantCard = ({resName, cuisine}) =>{
+    return(
+        <div>
+            <h3>{resName}</h3>
+            <h3>{cuisine}</h3>
+        </div>
+    )
+}
+
+---------------------------------------------------------------------
+
+
+const RestaurantCard = (props)=>{
+
+    
+    return(
+        <div className="res-card" style={{backgroundColor: "#c8c4c4"}}>
+            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ijy2jxi7lfwsebdtazpi" />
+            <h3>{props.resName}</h3>
+            <h4>{props.cusisine}</h4>
+            <h4>{props.rating}</h4>
+            <h4>{props.deliverytime}</h4>
+        </div>
+    )
+}
+
+
+// body component
+const Body = ()=>{
+    return(
+        <div className="body">
+            <div className="search">
+                Search
+            </div>
+
+            <div className="res-container">
+                <RestaurantCard resName="Meghana Foods" cusisine="Haleem, Biryani, Kebabs" rating="4.4 stars" deliverytime="30 minutes"/>
+                <RestaurantCard resName="KFC" cusisine="Burger, Fast Food, Cokes"/>
+            </div>
+        </div>
+    )
+}
+
+-------------------------------------------------------------------
+
+
+                swiggy api data
+
+
+// restaurant card component to reuse in the body
+const RestaurantCard = (props)=>{
+
+    const {resData} = props;
+    
+    return(
+        <div className="res-card" style={{backgroundColor: "#c8c4c4"}}>
+            <img className="res-logo" alt="res-logo" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/${resData.info.cloudinaryImageId}`} />
+            <h3>{resData.info.name}</h3>
+            <h4>{resData.info.cuisines.join(", ")}</h4>
+            <h4>{resData.info.avgRating}</h4>
+            <h4>{resData.info.costForTwo} For Two</h4>
+            <h4>{resData.info.sla.deliveryTime} minutes</h4>
+        </div>
+    )
+}
+
+
+
+// live data of 
+const resList = [ ];
+
+
+// body component
+const Body = ()=>{
+    return(
+        <div className="body">
+            <div className="search">
+                Search
+            </div>
+
+            <div className="res-container">
+                <RestaurantCard resData={resList[1]} />
+            </div>
+        </div>
+    )
+}
+
+------------------------------------------------------------------
+
+                    swiggy api data
+
+// restaurant card component to reuse in the body
+const RestaurantCard = (props)=>{
+
+    const {resData} = props;
+    const {cloudinaryImageId, name, cuisines, avgRating, costForTwo,deliveryTime,sla} = resData?.info;
+    
+    return(
+        <div className="res-card" style={{backgroundColor: "#fbf8f8"}}>
+            <img className="res-logo" alt="res-logo" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/${resData.info.cloudinaryImageId}`} />
+            <h3>{name}</h3>
+            <h4>{cuisines?.join(", ")}</h4>
+            <h4>{avgRating}</h4>
+            <h4>{costForTwo}</h4>
+            <h4>{sla?.deliveryTime} minutes</h4>
+        </div>
+    )
+}
+
+
+// body component
+const Body = ()=>{
+    return(
+        <div className="body">
+            <div className="search">
+                Search
+            </div>
+
+            <div className="res-container">
+                {
+                    resList.map((restaurant) => (
+                    <RestaurantCard 
+                    key = {restaurant.info.id}
+                    resData = {restaurant} 
+                    />))
+                }
+            </div>
+        </div>
+    )
+}
+
+-------------------------------------------------------------
+

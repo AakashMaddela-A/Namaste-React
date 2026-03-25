@@ -1,4 +1,62 @@
 
-#heading{
-    color: red;
+body {
+  background-color: #fff8e1;
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo{
+    width: 100px;
+    padding-top: 2px;
+    padding-left: 10px;
+    border-radius: 60%;
+    height: 80px;
+}
+
+
+
+.nav-items > ul{
+    display: flex;
+    font-size: 18px;
+    list-style-type: none;
+
+}
+
+.nav-items > ul > li{
+    padding: 0px 20px;
+    margin: 10px;
+}
+
+.res-container{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.res-card{
+    width: 230px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.res-card img:hover{
+    cursor: pointer;
+    border: 2px solid red;
+}
+
+.filter{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.res-logo{
+    width: 230px;
+    height: 180px;
+    border-radius: 20px;
+}
+
