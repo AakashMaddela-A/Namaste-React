@@ -40,6 +40,15 @@ body {
     margin-right: 10px;
 }
 
+.filter{
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-left: 120px;
+}
+
 .res-container{
     justify-content: center;
     display: flex;
@@ -62,10 +71,6 @@ body {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.filter{
-    padding: 10px;
-    cursor: pointer;
-}
 
 .res-logo{
     width: 230px;
