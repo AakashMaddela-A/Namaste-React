@@ -538,6 +538,240 @@ export default Body;
   }
 
   --------------------------------------------------
+  -----------------------------------------------------
+  --------------------------------------------------------
 
+
+            class and function based component difference
+
+
+import User from "./User";
+import UserClass from "./UserClass";
+
+
+const About = ()=>{
+    return(
+        <div>
+            <h1>About</h1>
+            <h2>This is Namaste React</h2>
+            <User name={"Aakash (function)"}/>
+
+            <UserClass name={"Aakash (Class)"} />
+        </div>
+    )
+}
+
+export default About;
+
+////////////////////////////////////////////
 
   
+import React from "react"
+
+
+class UserClass extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        console.log(props);
+    }
+     
+    render(){
+        return(
+            <div className="user-card">
+            <h2>Name : {this.props.name}</h2>
+            <h3>Location : Hyderabad</h3>
+            <h4>Contact : 8309135608</h4>
+        </div>
+        )
+    }
+}
+
+
+export default UserClass;
+
+////////////////////////////////////////////////
+
+
+const User = (props)=>{
+    return(
+        <div className="user-card">
+            <h2>Name : {props.name}</h2>
+            <h3>Location : Hyderabad</h3>
+            <h4>Contact : 8309135608</h4>
+        </div>
+    )
+}
+
+export default User;
+
+--------------------------------------------------
+------------------------------------------------
+
+
+import User from "./User";
+import UserClass from "./UserClass";
+
+
+const About = ()=>{
+    return(
+        <div>
+            <h1>About</h1>
+            <h2>This is Namaste React</h2>
+            <UserClass name={"Aakash (Class)"} location={"Hyderabad (class)"} />
+            <UserClass name={"Dhoni (Class)"} location={"Ranchi (class)"} />
+        </div>
+    )
+}
+
+export default About;
+
+
+
+
+
+
+import { useEffect, useState } from "react";
+
+
+
+const User = (props)=>{
+
+    const [count] = useState(0);
+    const [count2] = useState(1);
+
+    useEffect(()=>{
+        // Api Call
+    })
+
+
+    return(
+        <div className="user-card">
+            <h1>Count = {count}</h1>
+            <h1>Count2 = {count2}</h1>
+
+            <h2>Name : {props.name}</h2>
+            <h3>Location : Hyderabad</h3>
+            <h4>Contact : 8309135608</h4>
+        </div>
+    )
+}
+
+export default User;
+
+
+
+
+
+
+
+import React from "react"
+
+
+class UserClass extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            count:0,
+        }
+    }
+
+    componentDidMount(){
+        console.log("Child Component Did Mount");
+
+        // Api call
+    }
+     
+    render(){
+        return(
+            <div className="user-card">
+            <h1>Count : {this.state.count}</h1>
+            <button onClick={()=>{
+                this.setState({
+                    count:this.state.count+1,
+                })
+            }}>Count Increase</button>
+            <h2>Name : {this.props.name}</h2>
+            <h3>Location : {this.props.location}</h3>
+            <h4>Contact : 8309135608</h4>
+        </div>
+        )
+    }
+}
+
+
+export default UserClass;
+
+---------------------------------------------------
+---------------------------------------------------
+
+
+
+using class componenet
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            UserInfo: {
+                name:"Dummy",
+                location:"Default",
+                avatar_url:"http://dummy-photo.com",
+            }
+        };
+    }
+
+    async componentDidMount() {
+        try {
+            const data = await fetch("https://api.github.com/users/AakashMaddela-A");
+            const json = await data.json();
+
+            this.setState({
+                UserInfo: json,
+            });
+        } 
+        catch (error) {
+            console.error(error);
+        }
+    }
+
+
+    componentDidUpdate(){
+        console.log("component did update");
+    }
+
+    componentWillUnmount(){
+        console.log("component unmounting");
+    }
+
+    render() {
+
+        const user = this.state.UserInfo; 
+
+        if (!user) return <h2>Loading...</h2>;
+
+        const { name, location, followers, public_repos, avatar_url } = user;
+
+        return (
+            <div className="user-card">
+                <img src={avatar_url} alt="profile" width="100" />
+                <h2>Name : {name || "Not Available"}</h2>
+                <h3>Location : {location || "Not Available"}</h3>
+                <h4>Followers : {followers}</h4>
+                <h4>Repos : {public_repos}</h4>
+            </div>
+        );
+    }
+}
+
+export default UserClass;
+
+----------------------------------------------------

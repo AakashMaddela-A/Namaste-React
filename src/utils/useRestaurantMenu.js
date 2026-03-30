@@ -1,0 +1,26 @@
+import { useEffect, useState } from "react";
+import { MENU_API } from "./constants";
+
+
+
+const useRestaurantMenu = (resId)=>{
+
+    const [resInfo,setResInfo] = useState(null);
+    
+    // fetch data
+    useEffect(()=>{
+        fetchData();
+    },[resId]);
+
+    const fetchData = async ()=>{
+        const data = await fetch("https://corsproxy.io/?" + MENU_API + resId);
+
+        const json = await data.json();
+
+        setResInfo(json);
+    }
+
+    return resInfo;
+}
+
+export default useRestaurantMenu;
